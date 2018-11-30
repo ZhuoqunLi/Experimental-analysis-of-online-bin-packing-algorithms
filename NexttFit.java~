@@ -1,19 +1,19 @@
 import java.util.LinkedList;
 import java.util.ArrayList;
 
-public class FirstFit{
-  private int binSize=50;
+public class NexttFit{
+  private int binSize=100;
   private LinkedList<Integer> ffList;
   private int[][] bins;
   private int totalBins=0;
   
-  public FirstFit(LinkedList<Integer> originalList){
+  public NexttFit(LinkedList<Integer> originalList){
     ffList=originalList;
     bins=new int[ffList.size()][ffList.size()];
     initArray(bins);
   }
   
-  public void firstFitFunction(LinkedList<Integer> targetList){
+  public void nextFitFunction(LinkedList<Integer> targetList){
     for(int i=0;i<targetList.size();i++){//start from the very first element from the linkedlist
       boolean added=false;
       for(int j=0;(j<bins.length) &&(added==false);j++){

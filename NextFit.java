@@ -1,22 +1,23 @@
 import java.util.LinkedList;
 import java.util.ArrayList;
 
-public class FirstFit{
+public class NextFit{
   private int binSize=50;
-  private LinkedList<Integer> ffList;
+  private LinkedList<Integer> nfList;
   private int[][] bins;
   private int totalBins=0;
+  private int startBin=0;
   
-  public FirstFit(LinkedList<Integer> originalList){
-    ffList=originalList;
-    bins=new int[ffList.size()][ffList.size()];
+  public NextFit(LinkedList<Integer> originalList){
+    nfList=originalList;
+    bins=new int[nfList.size()][nfList.size()];
     initArray(bins);
   }
   
-  public void firstFitFunction(LinkedList<Integer> targetList){
+  public void nextFitFunction(LinkedList<Integer> targetList){
     for(int i=0;i<targetList.size();i++){//start from the very first element from the linkedlist
       boolean added=false;
-      for(int j=0;(j<bins.length) &&(added==false);j++){
+      for(int j=startBin;(j<bins.length) &&(added==false);j++){
         
         if((sum(bins[j])+targetList.get(i))<=binSize){
           for(int z=0;(z<bins[0].length) &&(added==false);z++){
@@ -27,13 +28,14 @@ public class FirstFit{
             }
           }
         }
+        startBin=j;
       }
      //System.out.println("------"); 
     }
   }
   
   public int getTotalBins(){
-    firstFitFunction(ffList);
+    nextFitFunction(nfList);
     int i;
     for(i=0;i<bins.length;i++){
       if(bins[i][0]==0){

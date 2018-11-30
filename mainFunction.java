@@ -8,7 +8,7 @@ public class mainFunction
     
     LinkedList<Integer> list = new LinkedList<Integer>();
     Random rand = new Random();
-    intputSize=100;
+    int intputSize=50;
     
     for(int i=0;i<intputSize;i++){
       int n = rand.nextInt(50) + 1;
@@ -16,11 +16,16 @@ public class mainFunction
     }
 
     System.out.println(list.size());
+    System.out.println(list);
     
+    NextFit nT=new NextFit(list);
+    System.out.println("total bins:"+nT.getTotalBins());
+    //nT.printResult();
+    
+    System.out.println("-----------------------------");
     
     FirstFit fT=new FirstFit(list);
     System.out.println("total bins:"+fT.getTotalBins());
-    //System.out.println(fT.toString());
-    fT.printResult();
+    //fT.printResult();
   }
 }
