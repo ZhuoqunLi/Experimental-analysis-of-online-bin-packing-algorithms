@@ -131,11 +131,11 @@ public class Harmonic{
   
   public void printResult(){
     int totalNumBins=0;
+    boolean gotIndex=false;
     
     for(int i=0;i<bins1.length;i++){
       if((bins1[i][0]!=0)){
         System.out.print("bin "+i+":");
-        totalNumBins++;
       }      
       for(int j=0;(j<bins1[0].length) && (bins1[i][j]!=0);j++){
         System.out.print((bins1[i][j]+" "));
@@ -143,11 +143,15 @@ public class Harmonic{
       if(bins1[i][0]!=0){
         System.out.println("");
       }
+      if((bins1[i][0]==0)&&(!gotIndex)){
+        totalNumBins=i;
+        gotIndex=true;
+      }      
     }
-     for(int i=0;i<bins2.length;i++){
+    gotIndex=false;
+    for(int i=0;i<bins2.length;i++){
       if((bins2[i][0]!=0)){
         System.out.print("bin "+(totalNumBins+i)+":");
-        totalNumBins++;
       }      
       for(int j=0;(j<bins2[0].length) && (bins2[i][j]!=0);j++){
         System.out.print((bins2[i][j]+" "));
@@ -155,11 +159,15 @@ public class Harmonic{
       if(bins2[i][0]!=0){
         System.out.println("");
       }
+      if((bins2[i][0]==0)&&(!gotIndex)){
+        totalNumBins=totalNumBins+i;
+        gotIndex=true;
+      }  
     }
-     for(int i=0;i<bins3.length;i++){
+    gotIndex=false;
+    for(int i=0;i<bins3.length;i++){
       if((bins3[i][0]!=0)){
         System.out.print("bin "+(totalNumBins+i)+":");
-        totalNumBins++;
       }      
       for(int j=0;(j<bins3[0].length) && (bins3[i][j]!=0);j++){
         System.out.print((bins3[i][j]+" "));
@@ -167,11 +175,15 @@ public class Harmonic{
       if(bins3[i][0]!=0){
         System.out.println("");
       }
+      if((bins3[i][0]==0)&&(!gotIndex)){
+        totalNumBins=totalNumBins+i;
+        gotIndex=true;
+      }  
     }
-     for(int i=0;i<bins4.length;i++){
+    gotIndex=false;
+    for(int i=0;i<bins4.length;i++){
       if((bins4[i][0]!=0)){
         System.out.print("bin "+(totalNumBins+i)+":");
-        totalNumBins++;
       }      
       for(int j=0;(j<bins4[0].length) && (bins4[i][j]!=0);j++){
         System.out.print((bins4[i][j]+" "));
@@ -179,7 +191,10 @@ public class Harmonic{
       if(bins4[i][0]!=0){
         System.out.println("");
       }
-    }
-    
+      if((bins4[i][0]==0)&&(!gotIndex)){
+        totalNumBins=totalNumBins+i;
+        gotIndex=true;
+      }  
+    }    
   }
 }
