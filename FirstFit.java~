@@ -1,0 +1,12 @@
+public class FirstFit{
+  public FirstFit(){
+    
+  }
+  
+  public String toString(){
+    System.out.println("Good!");
+    return "GOOD";
+  }
+  
+  
+}
