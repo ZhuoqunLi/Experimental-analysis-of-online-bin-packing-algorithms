@@ -2,7 +2,7 @@ import java.util.LinkedList;
 import java.util.ArrayList;
 
 public class BestFit{
-  private int binSize=50;
+  private int binSize=100;
   private LinkedList<Integer> bfList;
   private int[][] bins;
   private int totalBins=0;

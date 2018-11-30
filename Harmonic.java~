@@ -1,23 +1,22 @@
 import java.util.LinkedList;
 import java.util.ArrayList;
 
-public class NextFit{
-  private int binSize=100;
-  private LinkedList<Integer> nfList;
+public class Harmonic{
+  private int binSize=50;
+  private LinkedList<Integer> hList;
   private int[][] bins;
   private int totalBins=0;
-  private int startBin=0;
   
-  public NextFit(LinkedList<Integer> originalList){
-    nfList=originalList;
-    bins=new int[nfList.size()][nfList.size()];
+  public Harmonic(LinkedList<Integer> originalList){
+    hList=originalList;
+    bins=new int[hList.size()][hList.size()];
     initArray(bins);
   }
   
-  public void nextFitFunction(LinkedList<Integer> targetList){
+  public void firstFitFunction(LinkedList<Integer> targetList){
     for(int i=0;i<targetList.size();i++){//start from the very first element from the linkedlist
       boolean added=false;
-      for(int j=startBin;(j<bins.length) &&(added==false);j++){
+      for(int j=0;(j<bins.length) &&(added==false);j++){
         
         if((sum(bins[j])+targetList.get(i))<=binSize){
           for(int z=0;(z<bins[0].length) &&(added==false);z++){
@@ -28,14 +27,13 @@ public class NextFit{
             }
           }
         }
-        startBin=j;
       }
      //System.out.println("------"); 
     }
   }
   
   public int getTotalBins(){
-    nextFitFunction(nfList);
+    firstFitFunction(ffList);
     int i;
     for(i=0;i<bins.length;i++){
       if(bins[i][0]==0){
@@ -79,6 +77,4 @@ public class NextFit{
       }
     }
   }
-  
-  
 }

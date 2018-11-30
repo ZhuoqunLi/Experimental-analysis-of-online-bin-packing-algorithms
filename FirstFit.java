@@ -2,7 +2,7 @@ import java.util.LinkedList;
 import java.util.ArrayList;
 
 public class FirstFit{
-  private int binSize=50;
+  private int binSize=100;
   private LinkedList<Integer> ffList;
   private int[][] bins;
   private int totalBins=0;
@@ -77,6 +77,4 @@ public class FirstFit{
       }
     }
   }
-  
-  
 }

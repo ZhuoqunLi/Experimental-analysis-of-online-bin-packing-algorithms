@@ -8,15 +8,15 @@ public class mainFunction
     
     LinkedList<Integer> list = new LinkedList<Integer>();
     Random rand = new Random();
-    int intputSize=10000;
+    int intputSize=5;
     
     for(int i=0;i<intputSize;i++){
-      int n = rand.nextInt(50) + 1;
+      int n = rand.nextInt(100) + 1;
       list.add(n);
     }
 
     System.out.println(list.size());
-    //System.out.println(list);
+    System.out.println(list);
     
     NextFit nT=new NextFit(list);
     System.out.println("NextFit total bins:"+nT.getTotalBins());
@@ -33,5 +33,10 @@ public class mainFunction
     BestFit bT=new BestFit(list);
     System.out.println("BestFit total bins:"+bT.getTotalBins());
     //bT.printResult();
+    System.out.println("-----------------------------");
+    
+    Harmonic hA=new Harmonic(list);
+    System.out.println("v total bins:"+hA.getTotalBins());
+    hA.printResult();
   }
 }
