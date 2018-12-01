@@ -1,22 +1,34 @@
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.Collections;
 
 public class mainFunction
 {
-  public static void main(String[] args){
-    
-    LinkedList<Integer> list = new LinkedList<Integer>();
+  
+  
+  public static void main(String[] args){   
+    LinkedList<Integer> list = new LinkedList<Integer>();    
+    int intputSize=2;    
+    int binSize=100;
     Random rand = new Random();
-    int intputSize=10000;
     
     for(int i=0;i<intputSize;i++){
       int n = rand.nextInt(100) + 1;
+      int remaindSize=binSize-n;
       list.add(n);
+      while(remaindSize>0){
+        n=rand.nextInt(remaindSize) + 1;
+        remaindSize=remaindSize-n;
+        list.add(n);
+        //System.out.println(n+" "+i+" "+remaindSize);
+      }
     }
-
+    
     System.out.println(list.size());
-    //System.out.println(list);
+    System.out.println(list);
+    Collections.shuffle(list);
+    System.out.println(list);
     
     NextFit nT=new NextFit(list);
     System.out.println("NextFit total bins:"+nT.getTotalBins());

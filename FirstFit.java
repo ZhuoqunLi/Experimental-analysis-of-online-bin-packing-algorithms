@@ -1,5 +1,4 @@
 import java.util.LinkedList;
-import java.util.ArrayList;
 
 public class FirstFit{
   private int binSize=100;
