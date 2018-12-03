@@ -2,6 +2,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 import java.util.Collections;
+import java.lang.*;
+import java.text.DecimalFormat;
 
 public class mainFunction
 {
@@ -9,8 +11,9 @@ public class mainFunction
   
   public static void main(String[] args){   
     LinkedList<Integer> list = new LinkedList<Integer>();
-    int intputSize=200;    
+    int intputSize=1000;    
     int binSize=100;
+    DecimalFormat formatForTime = new DecimalFormat("#,###"); 
     
     list=inputGenerator(list,intputSize,binSize);
     
@@ -21,27 +24,40 @@ public class mainFunction
     //System.out.println(list);
     
     System.out.println("-----------------------------");
-    
+    long beginning = System.nanoTime();    
     NextFit nT=new NextFit(list,binSize);
     System.out.println("NextFit total bins:"+nT.getTotalBins());
-    //nT.printResult();
-    
-    System.out.println("-----------------------------");
-    
+    long durationTime = System.nanoTime() - beginning;
+    System.out.println(formatForTime.format(durationTime));
+    //nT.printResult();    
+    System.out.println("-----------------------------");  
+    beginning = System.nanoTime();
     FirstFit fT=new FirstFit(list,binSize);
     System.out.println("FirstFit total bins:"+fT.getTotalBins());
-    //fT.printResult();
-    
-    System.out.println("-----------------------------");
-    
+    durationTime = System.nanoTime() - beginning;
+    System.out.println(formatForTime.format(durationTime));
+    //fT.printResult();    
+    System.out.println("-----------------------------");  
+    beginning = System.nanoTime();
     BestFit bT=new BestFit(list,binSize);
     System.out.println("BestFit total bins:"+bT.getTotalBins());
+    durationTime = System.nanoTime() - beginning;
+    System.out.println(formatForTime.format(durationTime));
     //bT.printResult();
-    System.out.println("-----------------------------");
-    
+    System.out.println("-----------------------------"); 
+    beginning = System.nanoTime();
     Harmonic hA=new Harmonic(list,binSize);
     System.out.println("Harmonic total bins:"+hA.getTotalBins());
+    durationTime = System.nanoTime() - beginning;
+    System.out.println(formatForTime.format(durationTime));
     //hA.printResult();
+    System.out.println("-----------------------------");
+    beginning = System.nanoTime();
+    MTF mA=new MTF(list,binSize);
+    System.out.println("MTF total bins:"+mA.getTotalBins());
+    durationTime = System.nanoTime() - beginning;
+    System.out.println(formatForTime.format(durationTime));
+    //mA.printResult();
   }
   
   public static LinkedList<Integer> inputGenerator(LinkedList<Integer> targetList,int inputS,int binS){
