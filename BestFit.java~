@@ -2,13 +2,14 @@ import java.util.LinkedList;
 import java.util.ArrayList;
 
 public class BestFit{
-  private int binSize=50;
+  private int binSize;
   private LinkedList<Integer> bfList;
   private int[][] bins;
   private int totalBins=0;
   
-  public BestFit(LinkedList<Integer> originalList){
+  public BestFit(LinkedList<Integer> originalList,int bs){
     bfList=originalList;
+    binSize=bs;
     bins=new int[bfList.size()][bfList.size()];
     initArray(bins);
   }
@@ -16,20 +17,36 @@ public class BestFit{
   public void bestFitFunction(LinkedList<Integer> targetList){
     for(int i=0;i<targetList.size();i++){//start from the very first element from the linkedlist
       boolean added=false;
-      for(int j=0;(j<bins.length) &&(added==false);j++){
+      int perfectSpot=perfectIndex(targetList.get(i));
         
-        if((sum(bins[j])+targetList.get(i))<=binSize){
-          for(int z=0;(z<bins[0].length) &&(added==false);z++){
-            if(bins[j][z]==0){
-              bins[j][z]=targetList.get(i);
-              added=true;
-              //System.out.println(bins[j][z]+" "+i+" "+j+" "+targetList.get(i));
-            }
-          }
+      for(int z=0;(z<bins[0].length) &&(added==false);z++){
+        if(bins[perfectSpot][z]==0){
+          bins[perfectSpot][z]=targetList.get(i);
+          added=true;
         }
       }
-     //System.out.println("------"); 
     }
+     //System.out.println("------"); 
+  }
+  
+  public int perfectIndex(int toBeAdded){
+    int desIndex=0;
+    int currentPerfectGap=binSize;
+    
+    for(int i=0;(i<bins.length);i++){
+      if(bins[0][0]==0){
+        desIndex=0;
+        break;
+      }
+      //System.out.println("sum(bins[i]):"+sum(bins[i])+ "    toBeAdded:"+toBeAdded+"      binSize:"+binSize+"   binSize-(sum(bins[i])-toBeAdded:"+(binSize-(sum(bins[i])+toBeAdded))); 
+      if(((sum(bins[i])+toBeAdded)<=binSize) && (( binSize-(sum(bins[i])+toBeAdded))<currentPerfectGap)){
+        desIndex=i;
+        currentPerfectGap=binSize-(sum(bins[i])+toBeAdded);
+        //System.out.println("here");
+      }
+    } 
+    //System.out.println(desIndex+"  "+toBeAdded);
+    return desIndex;
   }
   
   public int getTotalBins(){

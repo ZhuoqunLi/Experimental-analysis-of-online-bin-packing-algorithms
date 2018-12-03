@@ -2,13 +2,14 @@ import java.util.LinkedList;
 import java.util.ArrayList;
 
 public class Harmonic{
-  private int binSize=100;
+  private int binSize;
   private LinkedList<Integer> hList;
   private int[][] bins1,bins2,bins3,bins4;
   private int totalBins=0;
   
-  public Harmonic(LinkedList<Integer> originalList){
+  public Harmonic(LinkedList<Integer> originalList,int bs){
     hList=originalList;
+    binSize=bs;
     bins1=new int[hList.size()][hList.size()];
     bins2=new int[hList.size()][hList.size()];
     bins3=new int[hList.size()][hList.size()];

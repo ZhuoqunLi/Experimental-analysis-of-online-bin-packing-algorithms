@@ -1,13 +1,14 @@
 import java.util.LinkedList;
 
 public class FirstFit{
-  private int binSize=100;
+  private int binSize;
   private LinkedList<Integer> ffList;
   private int[][] bins;
   private int totalBins=0;
   
-  public FirstFit(LinkedList<Integer> originalList){
+  public FirstFit(LinkedList<Integer> originalList,int bs){
     ffList=originalList;
+    binSize=bs;
     bins=new int[ffList.size()][ffList.size()];
     initArray(bins);
   }

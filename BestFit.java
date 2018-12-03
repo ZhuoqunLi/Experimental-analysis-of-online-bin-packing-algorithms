@@ -2,13 +2,14 @@ import java.util.LinkedList;
 import java.util.ArrayList;
 
 public class BestFit{
-  private int binSize=100;
+  private int binSize;
   private LinkedList<Integer> bfList;
   private int[][] bins;
   private int totalBins=0;
   
-  public BestFit(LinkedList<Integer> originalList){
+  public BestFit(LinkedList<Integer> originalList,int bs){
     bfList=originalList;
+    binSize=bs;
     bins=new int[bfList.size()][bfList.size()];
     initArray(bins);
   }
@@ -57,7 +58,7 @@ public class BestFit{
       }
     }
     totalBins=i;
-    
+
     return totalBins;
   }
   

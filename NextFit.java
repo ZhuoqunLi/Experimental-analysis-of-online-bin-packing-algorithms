@@ -2,14 +2,15 @@ import java.util.LinkedList;
 import java.util.ArrayList;
 
 public class NextFit{
-  private int binSize=100;
+  private int binSize;
   private LinkedList<Integer> nfList;
   private int[][] bins;
   private int totalBins=0;
   private int startBin=0;
   
-  public NextFit(LinkedList<Integer> originalList){
+  public NextFit(LinkedList<Integer> originalList,int bs){
     nfList=originalList;
+    binSize=bs;
     bins=new int[nfList.size()][nfList.size()];
     initArray(bins);
   }
