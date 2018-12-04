@@ -24,7 +24,7 @@ public class Harmonic{
     for(int i=0;i<targetList.size();i++){//start from the very first element from the linkedlist
       boolean added=false;
       
-      if(targetList.get(i)>50){
+      if(targetList.get(i)>(binSize/2)){
         for(int j=0;(j<bins1.length) &&(added==false);j++){        
           if((sum(bins1[j])+targetList.get(i))<=binSize){
             for(int z=0;(z<bins1[0].length) &&(added==false);z++){
@@ -37,7 +37,7 @@ public class Harmonic{
           }
         }
       }
-      else if((targetList.get(i)<=50)&&(targetList.get(i)>33)){
+      else if((targetList.get(i)<=(binSize/2))&&(targetList.get(i)>(binSize/3))){
         for(int j=0;(j<bins2.length) &&(added==false);j++){        
           if((sum(bins2[j])+targetList.get(i))<=binSize){
             for(int z=0;(z<bins2[0].length) &&(added==false);z++){
@@ -50,7 +50,7 @@ public class Harmonic{
           }
         }
       }
-      else if((targetList.get(i)<=33)&&(targetList.get(i)>25)){
+      else if((targetList.get(i)<=(binSize/3))&&(targetList.get(i)>(binSize/4))){
         for(int j=0;(j<bins3.length) &&(added==false);j++){        
           if((sum(bins3[j])+targetList.get(i))<=binSize){
             for(int z=0;(z<bins3[0].length) &&(added==false);z++){
@@ -63,7 +63,7 @@ public class Harmonic{
           }
         }
       }
-      else if(targetList.get(i)<=25){
+      else if(targetList.get(i)<=(binSize/4)){
         for(int j=0;(j<bins4.length) &&(added==false);j++){        
           if((sum(bins4[j])+targetList.get(i))<=binSize){
             for(int z=0;(z<bins4[0].length) &&(added==false);z++){
