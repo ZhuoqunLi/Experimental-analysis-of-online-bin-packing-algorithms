@@ -93,7 +93,33 @@ public class mainFunction
         }
       }
       else if(benchMarkOption.equals("c")){
-        
+        LinkedList<String> wordsTypes = new LinkedList<String>();
+        LinkedList<Integer> wordInput = new LinkedList<Integer>();
+        String dir = System.getProperty("user.dir");
+        File file = new File(dir+"\\words.txt"); 
+        System.out.println(dir);
+        try(Scanner sc = new Scanner(file)){
+          while (sc.hasNextLine()){           
+            wordsTypes.add(sc.nextLine());
+          }
+          //System.out.println(wordsTypes.size()); 
+          for(int i=0;i<wordsTypes.size();i++){
+            wordInput.add((wordsTypes.get(i)).length());
+          }
+          //System.out.println(wordsTypes.toString());
+          //System.out.println(wordInput.toString());
+          binSize=100;
+          int itemsNum=1000;
+          Random rand = new Random();
+          for(int i=0;i<itemsNum;i++){
+            list.add(wordInput.get(rand.nextInt(wordInput.size())));
+          }
+          System.out.println(list.toString());
+          normalCases(list,binSize);
+        }
+        catch (IOException e) {
+            System.out.println("NumberFormatException: " + e.getMessage());
+        }        
       }
   }
   
