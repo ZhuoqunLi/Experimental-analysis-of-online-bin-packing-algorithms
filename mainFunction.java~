@@ -4,16 +4,29 @@ import java.util.Random;
 import java.util.Collections;
 import java.lang.*;
 import java.text.DecimalFormat;
+import javax.swing.JOptionPane;
+import java.io.*;
+import java.util.Scanner;
 
 public class mainFunction
 {
   
   
   public static void main(String[] args){
-    for(int i=0;i<1000;i++){
       LinkedList<Integer> list = new LinkedList<Integer>();
-      int intputSize=1500;    
-      int binSize=100;
+      String inputForSize=JOptionPane.showInputDialog("enter the how bins for optimal solution");
+      String inputForbinSize=JOptionPane.showInputDialog("enter the size of bins"); 
+      int intputSize=0;    
+      int binSize=0;
+      try{
+        intputSize=Integer.parseInt(inputForSize);
+        binSize=Integer.parseInt(inputForbinSize);
+      }
+      catch(NumberFormatException e){
+        System.out.println("NumberFormatException: " + e.getMessage());
+      }
+      System.out.println("inputSize:" + intputSize+"  binSize:"+binSize);
+      
       DecimalFormat formatForTime = new DecimalFormat("#,###"); 
       
       list=inputGenerator(list,intputSize,binSize);
@@ -61,7 +74,6 @@ public class mainFunction
       System.out.println();
       System.out.println();
       //mA.printResult();
-    }
   }
   
   public static LinkedList<Integer> inputGenerator(LinkedList<Integer> targetList,int inputS,int binS){
