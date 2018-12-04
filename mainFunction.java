@@ -42,7 +42,7 @@ public class mainFunction
         System.out.println("input size:"+list.size());
         //System.out.println(list);
         Collections.shuffle(list);
-        System.out.println(list);
+        //System.out.println(list);
         normalCases(list,binSize);
       }
       else if(benchMarkOption.equals("b")){
@@ -80,7 +80,7 @@ public class mainFunction
           }
           //System.out.println(simInput.toString());
           binSize=15000;
-          int itemsNum=25;
+          int itemsNum=2000;
           Random rand = new Random();
           for(int i=0;i<itemsNum;i++){
             list.add(simInput.get(rand.nextInt(simInput.size())));
@@ -109,35 +109,35 @@ public class mainFunction
     System.out.println("NextFit total bins:"+nT.getTotalBins());
     long durationTime = System.nanoTime() - beginning;
     System.out.println(formatForTime.format(durationTime));
-    nT.printResult();    
+    //nT.printResult();    
     System.out.println("-----------------------------");  
     beginning = System.nanoTime();
     FirstFit fT=new FirstFit(list,binSize);
     System.out.println("FirstFit total bins:"+fT.getTotalBins());
     durationTime = System.nanoTime() - beginning;
     System.out.println(formatForTime.format(durationTime));
-    fT.printResult();    
+    //fT.printResult();    
     System.out.println("-----------------------------");  
     beginning = System.nanoTime();
     BestFit bT=new BestFit(list,binSize);
     System.out.println("BestFit total bins:"+bT.getTotalBins());
     durationTime = System.nanoTime() - beginning;
     System.out.println(formatForTime.format(durationTime));
-    bT.printResult();
+    //bT.printResult();
     System.out.println("-----------------------------"); 
     beginning = System.nanoTime();
     Harmonic hA=new Harmonic(list,binSize);
     System.out.println("Harmonic total bins:"+hA.getTotalBins());
     durationTime = System.nanoTime() - beginning;
     System.out.println(formatForTime.format(durationTime));
-    hA.printResult();
+    //hA.printResult();
     System.out.println("-----------------------------");
     beginning = System.nanoTime();
     MTF mA=new MTF(list,binSize);
     System.out.println("MTF total bins:"+mA.getTotalBins());
     durationTime = System.nanoTime() - beginning;
     System.out.println(formatForTime.format(durationTime));
-    mA.printResult();
+    //mA.printResult();
     System.out.println();
     System.out.println();
         
@@ -151,6 +151,7 @@ public class mainFunction
     
     for(int i=0;i<(intputSize);i++){
       int n = rand.nextInt(binSize) + 1;
+      //int n = rand.nextInt(5) + 1;
       int remaindSize=binSize-n;
       //System.out.println(n+" "+i+" "+remaindSize);
       tempList.add(n);
@@ -161,6 +162,7 @@ public class mainFunction
         }
         else{
           n=rand.nextInt(remaindSize) + 1;
+          //n=rand.nextInt(5) + 1;
           remaindSize=remaindSize-n;
           tempList.add(n);
         }

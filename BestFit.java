@@ -15,8 +15,9 @@ public class BestFit{
   }
   
   public void bestFitFunction(LinkedList<Integer> targetList){
+    boolean added;
     for(int i=0;i<targetList.size();i++){//start from the very first element from the linkedlist
-      boolean added=false;
+      added=false;
       int perfectSpot=perfectIndex(targetList.get(i));
         
       for(int z=0;(z<bins[0].length) &&(added==false);z++){

@@ -20,10 +20,10 @@ public class Harmonic{
     initArray(bins4);
   }
   
-  public void firstFitFunction(LinkedList<Integer> targetList){
+  public void harmonicFunction(LinkedList<Integer> targetList){
+    boolean added;
     for(int i=0;i<targetList.size();i++){//start from the very first element from the linkedlist
-      boolean added=false;
-      
+      added=false;      
       if(targetList.get(i)>(binSize/2)){
         for(int j=0;(j<bins1.length) &&(added==false);j++){        
           if((sum(bins1[j])+targetList.get(i))<=binSize){
@@ -80,7 +80,7 @@ public class Harmonic{
   }
   
   public int getTotalBins(){
-    firstFitFunction(hList);
+    harmonicFunction(hList);
     int i;
     for(i=0;i<bins1.length;i++){
       if(bins1[i][0]==0){

@@ -14,8 +14,9 @@ public class FirstFit{
   }
   
   public void firstFitFunction(LinkedList<Integer> targetList){
+    boolean added;
     for(int i=0;i<targetList.size();i++){//start from the very first element from the linkedlist
-      boolean added=false;
+      added=false;
       for(int j=0;(j<bins.length) &&(added==false);j++){
         
         if((sum(bins[j])+targetList.get(i))<=binSize){
