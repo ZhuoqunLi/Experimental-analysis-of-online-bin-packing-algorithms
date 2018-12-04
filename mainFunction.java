@@ -35,8 +35,6 @@ public class mainFunction
         System.out.println("inputSize:" + intputSize+"  binSize:"+binSize);  
         
         list=inputGenerator(list,intputSize,binSize);
-        System.out.println("bin numbers:"+intputSize);
-        System.out.println("input size:"+list.size());
         //System.out.println(list);
         Collections.shuffle(list);
         System.out.println(list);
@@ -45,7 +43,7 @@ public class mainFunction
         //System.out.println(list);
         Collections.shuffle(list);
         System.out.println(list);
-        normalCases(list,intputSize,binSize);
+        normalCases(list,binSize);
       }
       else if(benchMarkOption.equals("b")){
         LinkedList<Integer> binTypes = new LinkedList<Integer>();
@@ -60,10 +58,6 @@ public class mainFunction
           Collections.sort(binTypes);
           System.out.println(binTypes.size()); 
           System.out.println(binTypes.toString());
-          System.out.println(binTypes.get(0));
-          System.out.println(binTypes.get(1));
-          System.out.println(binTypes.get(binTypes.size()-2));
-          System.out.println(binTypes.get(binTypes.size()-1));
           for(int i=0;i<binTypes.size();i++){
             if(((i>=0)&&(i<13))||((i>=81)&&(i<binTypes.size()))){
               simInput.add(binTypes.get(i));
@@ -85,6 +79,14 @@ public class mainFunction
             }
           }
           System.out.println(simInput.toString());
+          binSize=15000;
+          int itemsNum=5000;
+          Random rand = new Random();
+          for(int i=0;i<itemsNum;i++){
+            list.add(simInput.get(rand.nextInt(simInput.size())));
+          }
+          //System.out.println(list.toString());
+          normalCases(list,binSize);
         }
         catch (IOException e) {
             System.out.println("NumberFormatException: " + e.getMessage());
@@ -95,9 +97,9 @@ public class mainFunction
       }
   }
   
-  public static void normalCases(LinkedList<Integer> targetList,int iS,int bS){
+  public static void normalCases(LinkedList<Integer> targetList,int bS){
     LinkedList<Integer> list =targetList;
-    int inputSize=iS;
+    //int inputSize=iS;
     int binSize=bS;          
     DecimalFormat formatForTime = new DecimalFormat("#,###"); 
     
