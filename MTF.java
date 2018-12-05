@@ -18,21 +18,22 @@ public class MTF{
     for(int i=0;i<targetList.size();i++){//start from the very first element from the linkedlist
       boolean added=false;
       for(int j=0;(j<bins.length) &&(added==false);j++){       
-        if((sum(bins[j])+targetList.get(i))<=binSize){
+        //if((sum(bins[j])+targetList.get(i))<=binSize){positionList.indexOf(new Integer(i))
+        if((sum(bins[j],j)+targetList.get(i))<=binSize){
           for(int z=0;(z<bins[0].length) &&(added==false);z++){
             if(bins[j][z]==0){
               bins[j][z]=targetList.get(i);
               added=true;
-              //System.out.println(j+" "+targetList.get(i));
+              System.out.println(j+" "+(sum(bins[j],j))+" "+targetList.get(i));
               if((positionList.size()!=0)&&(positionList.contains(new Integer(j)))){//current bin already have item in it, then we need to move it to front
                 //System.out.println("in");
                 positionList.remove(new Integer(j));
                 positionList.addFirst(new Integer(j));
-                //System.out.println(positionList.toString());
+                System.out.println(positionList.toString());
               }
               else{
-                positionList.add(new Integer(j));
                 //System.out.println("add");
+                positionList.add(new Integer(j));                
               }
               //System.out.println(bins[j][z]+" "+i+" "+j+" "+targetList.get(i));
             }
@@ -63,8 +64,15 @@ public class MTF{
     }
   }
   
-  public int sum(int []targetBin){
+  public int sum(int []targetBin,int positionInfor){
     int sumResult=0;   
+    int j=positionInfor;
+    if(positionList.indexOf(new Integer(j))!=-1){
+      targetBin=bins[positionList.indexOf(new Integer(j))];
+    }
+    else{
+    }
+    
     for(int i=0;(i<targetBin.length) && (targetBin[i]!=0);i++){
       sumResult=sumResult+targetBin[i];
     }   

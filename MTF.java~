@@ -23,10 +23,12 @@ public class MTF{
             if(bins[j][z]==0){
               bins[j][z]=targetList.get(i);
               added=true;
+              //System.out.println(j+" "+targetList.get(i));
               if((positionList.size()!=0)&&(positionList.contains(new Integer(j)))){//current bin already have item in it, then we need to move it to front
+                //System.out.println("in");
                 positionList.remove(new Integer(j));
                 positionList.addFirst(new Integer(j));
-                //System.out.println("addFirst");
+                //System.out.println(positionList.toString());
               }
               else{
                 positionList.add(new Integer(j));
@@ -71,6 +73,7 @@ public class MTF{
   
   public void printResult(){
     int position;
+    //System.out.print("positionList:"+positionList.toString());
     for(int i=0;i<positionList.size();i++){
       position=positionList.indexOf(new Integer(i));
       if((bins[position][0]!=0)){

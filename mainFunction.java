@@ -11,29 +11,30 @@ import java.io.File;
 import java.util.Scanner; 
 
 public class mainFunction
-{
-  
-  
+{  
   public static void main(String[] args){
-      LinkedList<Integer> list = new LinkedList<Integer>();
+    LinkedList<Integer> list = new LinkedList<Integer>();
 
-      int intputSize=0;    
-      int binSize=0; 
+    int intputSize=0;    
+    int binSize=0; 
+    int testTimes=0;
      
-      String benchMarkOption=JOptionPane.showInputDialog("which benchmark option would you want to run?£¨enter the character to choose£©\na.normal\nb.amazon box\nc.words");
-      if(benchMarkOption.equals("a")){
-        String inputForSize=JOptionPane.showInputDialog("enter the how bins for optimal solution");
-        //String inputForbinSize=JOptionPane.showInputDialog("enter the size of bins"); 
-        try{
-          intputSize=Integer.parseInt(inputForSize);
-          //binSize=Integer.parseInt(inputForbinSize);
-          binSize=100;
-        }
-        catch(NumberFormatException e){
-          System.out.println("NumberFormatException: " + e.getMessage());
-        }
-        System.out.println("inputSize:" + intputSize+"  binSize:"+binSize);  
-        
+    String benchMarkOption=JOptionPane.showInputDialog("which benchmark option would you want to run?£¨enter the character to choose£©\na.normal\nb.amazon box\nc.words");
+    String runTimes=JOptionPane.showInputDialog("how many tests do you want to do in a round?(enter numbers from 1 to 1500)");
+    testTimes=Integer.parseInt(runTimes);
+    if(benchMarkOption.equals("a")){
+      String inputForSize=JOptionPane.showInputDialog("enter the how bins for optimal solution");
+      //String inputForbinSize=JOptionPane.showInputDialog("enter the size of bins"); 
+      try{
+        intputSize=Integer.parseInt(inputForSize);
+        //binSize=Integer.parseInt(inputForbinSize);
+        binSize=100;
+      }
+      catch(NumberFormatException e){
+        System.out.println("NumberFormatException: " + e.getMessage());
+      }
+      System.out.println("inputSize:" + intputSize+"  binSize:"+binSize);  
+      for(int z=0;z<testTimes;z++){
         list=inputGenerator(list,intputSize,binSize);
         //System.out.println(list);
         Collections.shuffle(list);
@@ -42,10 +43,20 @@ public class mainFunction
         System.out.println("input size:"+list.size());
         //System.out.println(list);
         Collections.shuffle(list);
-        //System.out.println(list);
+        System.out.println(list);
         normalCases(list,binSize);
       }
-      else if(benchMarkOption.equals("b")){
+    }
+    else if(benchMarkOption.equals("b")){
+      String inputForItems=JOptionPane.showInputDialog("how many items in total");
+      int itemsNum=0;
+      try{
+        itemsNum=Integer.parseInt(inputForItems);
+      }
+      catch(NumberFormatException e){
+        System.out.println("NumberFormatException: " + e.getMessage());
+      }
+      for(int z=0;z<testTimes;z++){
         LinkedList<Integer> binTypes = new LinkedList<Integer>();
         LinkedList<Integer> simInput = new LinkedList<Integer>();
         String dir = System.getProperty("user.dir");
@@ -79,20 +90,29 @@ public class mainFunction
             }
           }
           //System.out.println(simInput.toString());
-          binSize=15000;
-          int itemsNum=2000;
+          binSize=15000;          
           Random rand = new Random();
           for(int i=0;i<itemsNum;i++){
             list.add(simInput.get(rand.nextInt(simInput.size())));
           }
-          System.out.println(list.toString());
+          //System.out.println(list.toString());
           normalCases(list,binSize);
         }
         catch (IOException e) {
-            System.out.println("NumberFormatException: " + e.getMessage());
+          System.out.println("NumberFormatException: " + e.getMessage());
         }
       }
-      else if(benchMarkOption.equals("c")){
+    }
+    else if(benchMarkOption.equals("c")){
+      String inputForWords=JOptionPane.showInputDialog("how many words in total");
+      int itemsNum=0;
+      try{
+        itemsNum=Integer.parseInt(inputForWords);
+      }
+      catch(NumberFormatException e){
+        System.out.println("NumberFormatException: " + e.getMessage());
+      }
+      for(int z=0;z<testTimes;z++){
         LinkedList<String> wordsTypes = new LinkedList<String>();
         LinkedList<Integer> wordInput = new LinkedList<Integer>();
         String dir = System.getProperty("user.dir");
@@ -109,18 +129,18 @@ public class mainFunction
           //System.out.println(wordsTypes.toString());
           //System.out.println(wordInput.toString());
           binSize=100;
-          int itemsNum=1000;
           Random rand = new Random();
           for(int i=0;i<itemsNum;i++){
             list.add(wordInput.get(rand.nextInt(wordInput.size())));
           }
-          System.out.println(list.toString());
+          //System.out.println(list.toString());
           normalCases(list,binSize);
         }
         catch (IOException e) {
-            System.out.println("NumberFormatException: " + e.getMessage());
+          System.out.println("NumberFormatException: " + e.getMessage());
         }        
       }
+    }
   }
   
   public static void normalCases(LinkedList<Integer> targetList,int bS){
