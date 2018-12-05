@@ -1,4 +1,5 @@
 import java.util.LinkedList;
+import java.util.Arrays; 
 
 public class MTF{
   private int binSize;
@@ -15,33 +16,35 @@ public class MTF{
   }
   
   public void mtfFunction(LinkedList<Integer> targetList){
+    boolean added;
     for(int i=0;i<targetList.size();i++){//start from the very first element from the linkedlist
-      boolean added=false;
-      for(int j=0;(j<bins.length) &&(added==false);j++){       
-        //if((sum(bins[j])+targetList.get(i))<=binSize){positionList.indexOf(new Integer(i))
-        if((sum(bins[j],j)+targetList.get(i))<=binSize){
+      added=false;
+      for(int j=0;(j<bins.length) &&(added==false);j++){
+        
+        if((sum(bins[j])+targetList.get(i))<=binSize){
           for(int z=0;(z<bins[0].length) &&(added==false);z++){
             if(bins[j][z]==0){
               bins[j][z]=targetList.get(i);
               added=true;
-              System.out.println(j+" "+(sum(bins[j],j))+" "+targetList.get(i));
-              if((positionList.size()!=0)&&(positionList.contains(new Integer(j)))){//current bin already have item in it, then we need to move it to front
-                //System.out.println("in");
-                positionList.remove(new Integer(j));
-                positionList.addFirst(new Integer(j));
-                System.out.println(positionList.toString());
+              //if((bins[j][1]!=0)){
+              if((z>0)){
+                shiftArray(bins,j);
               }
-              else{
-                //System.out.println("add");
-                positionList.add(new Integer(j));                
-              }
-              //System.out.println(bins[j][z]+" "+i+" "+j+" "+targetList.get(i));
             }
+            //System.out.println(Arrays.toString(bins));
           }
         }
       }
-     //System.out.println("------"); 
     }
+  }
+  
+  public int[][] shiftArray(int[][] targetArray,int targetIndex){
+    int[] storedRemovedArray=targetArray[targetIndex];
+    for(int i=targetIndex;i>0;i--){
+      targetArray[i]=targetArray[i-1];
+    }
+    targetArray[0]=storedRemovedArray;
+    return targetArray;
   }
   
   public int getTotalBins(){
@@ -64,15 +67,8 @@ public class MTF{
     }
   }
   
-  public int sum(int []targetBin,int positionInfor){
+  public int sum(int []targetBin){
     int sumResult=0;   
-    int j=positionInfor;
-    if(positionList.indexOf(new Integer(j))!=-1){
-      targetBin=bins[positionList.indexOf(new Integer(j))];
-    }
-    else{
-    }
-    
     for(int i=0;(i<targetBin.length) && (targetBin[i]!=0);i++){
       sumResult=sumResult+targetBin[i];
     }   
@@ -80,20 +76,18 @@ public class MTF{
   }
   
   public void printResult(){
-    int position;
-    //System.out.print("positionList:"+positionList.toString());
-    for(int i=0;i<positionList.size();i++){
-      position=positionList.indexOf(new Integer(i));
-      if((bins[position][0]!=0)){
+    for(int i=0;i<bins.length;i++){
+      if((bins[i][0]!=0)){
         System.out.print("bin "+i+":");
       }
       
-      for(int j=0;(j<bins[0].length) && (bins[position][j]!=0);j++){
-        System.out.print((bins[position][j]+" "));
+      for(int j=0;(j<bins[0].length) && (bins[i][j]!=0);j++){
+        System.out.print((bins[i][j]+" "));
       }
-      if(bins[position][0]!=0){
+      if(bins[i][0]!=0){
         System.out.println("");
       }
     }
   }
+
 }

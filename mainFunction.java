@@ -43,7 +43,7 @@ public class mainFunction
         System.out.println("input size:"+list.size());
         //System.out.println(list);
         Collections.shuffle(list);
-        System.out.println(list);
+        //System.out.println(list);
         normalCases(list,binSize);
       }
     }
