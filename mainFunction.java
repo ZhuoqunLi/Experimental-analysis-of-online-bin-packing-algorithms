@@ -33,14 +33,14 @@ public class mainFunction
       catch(NumberFormatException e){
         System.out.println("NumberFormatException: " + e.getMessage());
       }
-      System.out.println("inputSize:" + intputSize+"  binSize:"+binSize);  
+      System.out.println("Optimal result:" + intputSize+"  binSize:"+binSize);  
       for(int z=0;z<testTimes;z++){
         list=inputGenerator(list,intputSize,binSize);
         //System.out.println(list);
         Collections.shuffle(list);
         //System.out.println(list);
-        System.out.println("bin numbers:"+intputSize);
-        System.out.println("input size:"+list.size());
+        //System.out.println("bin numbers:"+intputSize);
+        //System.out.println("input size:"+list.size());
         //System.out.println(list);
         Collections.shuffle(list);
         //System.out.println(list);
@@ -57,17 +57,18 @@ public class mainFunction
         System.out.println("NumberFormatException: " + e.getMessage());
       }
       for(int z=0;z<testTimes;z++){
+        list = new LinkedList<Integer>();
         LinkedList<Integer> binTypes = new LinkedList<Integer>();
         LinkedList<Integer> simInput = new LinkedList<Integer>();
         String dir = System.getProperty("user.dir");
         File file = new File(dir+"\\box_volumn.txt"); 
-        System.out.println(dir);
+        //System.out.println(dir);
         try(Scanner sc = new Scanner(file)){
           while (sc.hasNextLine()){           
             binTypes.add(Integer.parseInt(sc.nextLine()));
           }
           Collections.sort(binTypes);
-          System.out.println(binTypes.size()); 
+          //System.out.println(binTypes.size()); 
           //System.out.println(binTypes.toString());
           for(int i=0;i<binTypes.size();i++){
             if(((i>=0)&&(i<13))||((i>=81)&&(i<binTypes.size()))){
@@ -113,11 +114,12 @@ public class mainFunction
         System.out.println("NumberFormatException: " + e.getMessage());
       }
       for(int z=0;z<testTimes;z++){
+        list = new LinkedList<Integer>();
         LinkedList<String> wordsTypes = new LinkedList<String>();
         LinkedList<Integer> wordInput = new LinkedList<Integer>();
         String dir = System.getProperty("user.dir");
         File file = new File(dir+"\\words.txt"); 
-        System.out.println(dir);
+        //System.out.println(dir);
         try(Scanner sc = new Scanner(file)){
           while (sc.hasNextLine()){           
             wordsTypes.add(sc.nextLine());
