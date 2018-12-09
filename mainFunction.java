@@ -8,10 +8,22 @@ import javax.swing.JOptionPane;
 import java.io.*;
 import java.util.Scanner;
 import java.io.File; 
-import java.util.Scanner; 
+import java.util.Scanner;
+import java.util.ArrayList;
 
 public class mainFunction
 {  
+  static LinkedList<Integer> bFBinsNum = new LinkedList<Integer>();
+  static LinkedList<Integer> fFBinsNum = new LinkedList<Integer>();
+  static LinkedList<Integer> nFBinsNum = new LinkedList<Integer>();
+  static LinkedList<Integer> mtfBinsNum = new LinkedList<Integer>();
+  static LinkedList<Integer> hBinsNum = new LinkedList<Integer>();
+  static LinkedList<String> bFTimes = new LinkedList<String>();
+  static LinkedList<String> fFTimes = new LinkedList<String>();
+  static LinkedList<String> nFTimes = new LinkedList<String>();
+  static LinkedList<String> mtfTimes = new LinkedList<String>();
+  static LinkedList<String> hTimes = new LinkedList<String>();
+  
   public static void main(String[] args){
     LinkedList<Integer> list = new LinkedList<Integer>();
 
@@ -46,9 +58,6 @@ public class mainFunction
         list=inputGenerator(list,intputSize,binSize);
         //System.out.println(list);
         Collections.shuffle(list);
-        //System.out.println(list);
-        //System.out.println("bin numbers:"+intputSize);
-        //System.out.println("input size:"+list.size());
         //System.out.println(list);
         Collections.shuffle(list);
         System.out.println(list);
@@ -151,6 +160,16 @@ public class mainFunction
         }        
       }
     }
+    System.out.println("best fit bins:\n"+bFBinsNum.toString());
+    System.out.println("best fit times:\n"+bFTimes.toString());
+    System.out.println("first fit bins:\n"+fFBinsNum.toString());
+    System.out.println("first fit times:\n"+fFTimes.toString());
+    System.out.println("next fit bins:\n"+nFBinsNum.toString());
+    System.out.println("next fit times:\n"+nFTimes.toString());
+    System.out.println("harmonic fit bins:\n"+hBinsNum.toString());
+    System.out.println("harmonic fit times:\n"+hTimes.toString());
+    System.out.println("move to front bins:\n"+mtfBinsNum.toString());
+    System.out.println("move to front times:\n"+mtfTimes.toString());
   }
   
   public static void normalCases(LinkedList<Integer> targetList,int bS,boolean printResult){
@@ -162,37 +181,47 @@ public class mainFunction
     System.out.println("-----------------------------");
     long beginning = System.nanoTime();    
     NextFit nT=new NextFit(list,binSize);
-    System.out.println("NextFit total bins:"+nT.getTotalBins());
+    //System.out.println("NextFit total bins:"+nT.getTotalBins());
+    nFBinsNum.add(nT.getTotalBins());
     long durationTime = System.nanoTime() - beginning;
     System.out.println(formatForTime.format(durationTime));
+    nFTimes.add(formatForTime.format(durationTime));
     if(printResult){nT.printResult();}    
     System.out.println("-----------------------------");  
     beginning = System.nanoTime();
     FirstFit fT=new FirstFit(list,binSize);
-    System.out.println("FirstFit total bins:"+fT.getTotalBins());
+    //System.out.println("FirstFit total bins:"+fT.getTotalBins());
+    fFBinsNum.add(fT.getTotalBins());
     durationTime = System.nanoTime() - beginning;
     System.out.println(formatForTime.format(durationTime));
+    fFTimes.add(formatForTime.format(durationTime));
     if(printResult){fT.printResult(); }   
     System.out.println("-----------------------------");  
     beginning = System.nanoTime();
     BestFit bT=new BestFit(list,binSize);
-    System.out.println("BestFit total bins:"+bT.getTotalBins());
+    //System.out.println("BestFit total bins:"+bT.getTotalBins());
+    bFBinsNum.add(bT.getTotalBins());
     durationTime = System.nanoTime() - beginning;
     System.out.println(formatForTime.format(durationTime));
+    bFTimes.add(formatForTime.format(durationTime));
     if(printResult){bT.printResult();}
     System.out.println("-----------------------------"); 
     beginning = System.nanoTime();
     Harmonic hA=new Harmonic(list,binSize);
-    System.out.println("Harmonic total bins:"+hA.getTotalBins());
+    //System.out.println("Harmonic total bins:"+hA.getTotalBins());
+    hBinsNum.add(hA.getTotalBins());
     durationTime = System.nanoTime() - beginning;
     System.out.println(formatForTime.format(durationTime));
+    hTimes.add(formatForTime.format(durationTime));
     if(printResult){hA.printResult();}
     System.out.println("-----------------------------");
     beginning = System.nanoTime();
     MTF mA=new MTF(list,binSize);
-    System.out.println("MTF total bins:"+mA.getTotalBins());
+    //System.out.println("MTF total bins:"+mA.getTotalBins());
+    mtfBinsNum.add(mA.getTotalBins());
     durationTime = System.nanoTime() - beginning;
     System.out.println(formatForTime.format(durationTime));
+    mtfTimes.add(formatForTime.format(durationTime));
     if(printResult){mA.printResult();}
     System.out.println();
     System.out.println();

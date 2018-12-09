@@ -18,9 +18,17 @@ public class mainFunction
     int intputSize=0;    
     int binSize=0; 
     int testTimes=0;
+    boolean printAll;
      
     String benchMarkOption=JOptionPane.showInputDialog("which benchmark option would you want to run?£¨enter the character to choose£©\na.normal\nb.amazon box\nc.words");
     String runTimes=JOptionPane.showInputDialog("how many tests do you want to do in a round?(enter numbers from 1 to 1500)");
+    String printOrNot=JOptionPane.showInputDialog("Do you want to print all algorithms results in detail?\ntype y for yes\ntype n for no");
+    if(printOrNot.equals("y")){
+      printAll=true;
+    }
+    else{
+      printAll=false;
+    }
     testTimes=Integer.parseInt(runTimes);
     if(benchMarkOption.equals("a")){
       String inputForSize=JOptionPane.showInputDialog("enter the how bins for optimal solution");
@@ -43,8 +51,8 @@ public class mainFunction
         //System.out.println("input size:"+list.size());
         //System.out.println(list);
         Collections.shuffle(list);
-        //System.out.println(list);
-        normalCases(list,binSize);
+        System.out.println(list);
+        normalCases(list,binSize,printAll);
       }
     }
     else if(benchMarkOption.equals("b")){
@@ -97,7 +105,7 @@ public class mainFunction
             list.add(simInput.get(rand.nextInt(simInput.size())));
           }
           //System.out.println(list.toString());
-          normalCases(list,binSize);
+          normalCases(list,binSize,printAll);
         }
         catch (IOException e) {
           System.out.println("NumberFormatException: " + e.getMessage());
@@ -136,7 +144,7 @@ public class mainFunction
             list.add(wordInput.get(rand.nextInt(wordInput.size())));
           }
           //System.out.println(list.toString());
-          normalCases(list,binSize);
+          normalCases(list,binSize,printAll);
         }
         catch (IOException e) {
           System.out.println("NumberFormatException: " + e.getMessage());
@@ -145,7 +153,7 @@ public class mainFunction
     }
   }
   
-  public static void normalCases(LinkedList<Integer> targetList,int bS){
+  public static void normalCases(LinkedList<Integer> targetList,int bS,boolean printResult){
     LinkedList<Integer> list =targetList;
     //int inputSize=iS;
     int binSize=bS;          
@@ -157,35 +165,35 @@ public class mainFunction
     System.out.println("NextFit total bins:"+nT.getTotalBins());
     long durationTime = System.nanoTime() - beginning;
     System.out.println(formatForTime.format(durationTime));
-    //nT.printResult();    
+    if(printResult){nT.printResult();}    
     System.out.println("-----------------------------");  
     beginning = System.nanoTime();
     FirstFit fT=new FirstFit(list,binSize);
     System.out.println("FirstFit total bins:"+fT.getTotalBins());
     durationTime = System.nanoTime() - beginning;
     System.out.println(formatForTime.format(durationTime));
-    //fT.printResult();    
+    if(printResult){fT.printResult(); }   
     System.out.println("-----------------------------");  
     beginning = System.nanoTime();
     BestFit bT=new BestFit(list,binSize);
     System.out.println("BestFit total bins:"+bT.getTotalBins());
     durationTime = System.nanoTime() - beginning;
     System.out.println(formatForTime.format(durationTime));
-    //bT.printResult();
+    if(printResult){bT.printResult();}
     System.out.println("-----------------------------"); 
     beginning = System.nanoTime();
     Harmonic hA=new Harmonic(list,binSize);
     System.out.println("Harmonic total bins:"+hA.getTotalBins());
     durationTime = System.nanoTime() - beginning;
     System.out.println(formatForTime.format(durationTime));
-    //hA.printResult();
+    if(printResult){hA.printResult();}
     System.out.println("-----------------------------");
     beginning = System.nanoTime();
     MTF mA=new MTF(list,binSize);
     System.out.println("MTF total bins:"+mA.getTotalBins());
     durationTime = System.nanoTime() - beginning;
     System.out.println(formatForTime.format(durationTime));
-    //mA.printResult();
+    if(printResult){mA.printResult();}
     System.out.println();
     System.out.println();
         
