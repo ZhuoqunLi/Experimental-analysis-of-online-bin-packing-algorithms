@@ -89,11 +89,9 @@ public class MTF{
       }
     }
   }
-  public void printWaste(){
+  public LinkedList<Integer> printWaste(){
+    LinkedList<Integer> wasteList= new LinkedList<Integer>();
     for(int i=0;i<bins.length;i++){
-      if((bins[i][0]!=0)){
-        System.out.print("bin "+i+":");
-      }
       int wasteSum=0;
       int sum=0;
       for(int j=0;(j<bins[0].length) && (bins[i][j]!=0);j++){
@@ -101,9 +99,10 @@ public class MTF{
       }
       if(bins[i][0]!=0){
         wasteSum=binSize-sum;
-        System.out.println(wasteSum+" ");
+        wasteList.add(wasteSum);
       }
-    }    
+    }
+    return wasteList;
   }
 
 }

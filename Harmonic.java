@@ -199,11 +199,10 @@ public class Harmonic{
     }    
   }
   
-  public void printWaste(){
+  public LinkedList<Integer> printWaste(){
+    LinkedList<Integer> wasteList= new LinkedList<Integer>();
+    
     for(int i=0;i<bins1.length;i++){
-      if((bins1[i][0]!=0)){
-        System.out.print("bin "+i+":");
-      }
       int wasteSum=0;
       int sum=0;
       for(int j=0;(j<bins1[0].length) && (bins1[i][j]!=0);j++){
@@ -211,13 +210,10 @@ public class Harmonic{
       }
       if(bins1[i][0]!=0){
         wasteSum=binSize-sum;
-        System.out.println(wasteSum+" ");
+        wasteList.add(wasteSum);
       }
     }
     for(int i=0;i<bins2.length;i++){
-      if((bins2[i][0]!=0)){
-        System.out.print("bin "+i+":");
-      }
       int wasteSum=0;
       int sum=0;
       for(int j=0;(j<bins2[0].length) && (bins2[i][j]!=0);j++){
@@ -225,13 +221,10 @@ public class Harmonic{
       }
       if(bins2[i][0]!=0){
         wasteSum=binSize-sum;
-        System.out.println(wasteSum+" ");
+        wasteList.add(wasteSum);
       }
     }
     for(int i=0;i<bins3.length;i++){
-      if((bins3[i][0]!=0)){
-        System.out.print("bin "+i+":");
-      }
       int wasteSum=0;
       int sum=0;
       for(int j=0;(j<bins3[0].length) && (bins3[i][j]!=0);j++){
@@ -239,13 +232,10 @@ public class Harmonic{
       }
       if(bins3[i][0]!=0){
         wasteSum=binSize-sum;
-        System.out.println(wasteSum+" ");
+        wasteList.add(wasteSum);
       }
     }
     for(int i=0;i<bins4.length;i++){
-      if((bins4[i][0]!=0)){
-        System.out.print("bin "+i+":");
-      }
       int wasteSum=0;
       int sum=0;
       for(int j=0;(j<bins4[0].length) && (bins4[i][j]!=0);j++){
@@ -253,8 +243,9 @@ public class Harmonic{
       }
       if(bins4[i][0]!=0){
         wasteSum=binSize-sum;
-        System.out.println(wasteSum+" ");
+        wasteList.add(wasteSum);
       }
     }
+    return wasteList;
   }
 }
