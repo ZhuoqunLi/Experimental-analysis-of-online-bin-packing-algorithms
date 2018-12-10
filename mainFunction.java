@@ -179,10 +179,12 @@ public class mainFunction
     System.out.println("best fit bins:\n"+bFBinsNum.toString());
     System.out.println("best fit times:\n"+bFTimes.toString());
     System.out.println("best fit waste:\n"+bFWasteList.toString());
+    System.out.println("best fit waste total:\n"+Arrays.toString(bFWasteArray));
     System.out.println("-----------------------------");
     System.out.println("first fit bins:\n"+fFBinsNum.toString());
     System.out.println("first fit times:\n"+fFTimes.toString());
     System.out.println("first fit waste:\n"+fFWasteList.toString());
+    System.out.println("first fit waste total:\n"+Arrays.toString(fFWasteArray));
     System.out.println("-----------------------------");
     System.out.println("next fit bins:\n"+nFBinsNum.toString());
     System.out.println("next fit times:\n"+nFTimes.toString());
@@ -192,10 +194,12 @@ public class mainFunction
     System.out.println("harmonic fit bins:\n"+hBinsNum.toString());
     System.out.println("harmonic fit times:\n"+hTimes.toString());
     System.out.println("harmonic fit waste:\n"+hBWasteList.toString());
+    System.out.println("harmonic fit waste total:\n"+Arrays.toString(hWasteArray));
     System.out.println("-----------------------------");
     System.out.println("move to front bins:\n"+mtfBinsNum.toString());
     System.out.println("move to front times:\n"+mtfTimes.toString());
     System.out.println("move to front waste:\n"+mtWasteList.toString());
+    System.out.println("move to front waste total:\n"+Arrays.toString(mtWasteArray));
     System.out.println("-----------------------------");
   }
   
@@ -225,6 +229,8 @@ public class mainFunction
     if(printResult){fT.printResult(); }   
     fFWaste=fT.printWaste();
     fFWasteList.add(fFWaste);
+    fFWasteArray[0]=fFWasteArray[0]+(wasteChecker(fT.printWaste(),bS))[0];
+    fFWasteArray[1]=fFWasteArray[1]+(wasteChecker(fT.printWaste(),bS))[1];
     //System.out.println("-----------------------------");  
     beginning = System.nanoTime();
     BestFit bT=new BestFit(list,binSize);
@@ -234,6 +240,8 @@ public class mainFunction
     if(printResult){bT.printResult();}
     bFWaste=bT.printWaste();
     bFWasteList.add(bFWaste);
+    bFWasteArray[0]=bFWasteArray[0]+(wasteChecker(bT.printWaste(),bS))[0];
+    bFWasteArray[1]=bFWasteArray[1]+(wasteChecker(bT.printWaste(),bS))[1];
     //System.out.println("-----------------------------"); 
     beginning = System.nanoTime();
     Harmonic hA=new Harmonic(list,binSize);
@@ -243,6 +251,8 @@ public class mainFunction
     if(printResult){hA.printResult();}
     hBWaste=hA.printWaste();
     hBWasteList.add(hBWaste);
+    hWasteArray[0]=hWasteArray[0]+(wasteChecker(hA.printWaste(),bS))[0];
+    hWasteArray[1]=hWasteArray[1]+(wasteChecker(hA.printWaste(),bS))[1];
     //System.out.println("-----------------------------");
     beginning = System.nanoTime();
     MTF mA=new MTF(list,binSize);
@@ -252,15 +262,17 @@ public class mainFunction
     if(printResult){mA.printResult();}
     mtWaste=mA.printWaste();
     mtWasteList.add(mtWaste);
+    mtWasteArray[0]=mtWasteArray[0]+(wasteChecker(mA.printWaste(),bS))[0];
+    mtWasteArray[1]=mtWasteArray[1]+(wasteChecker(mA.printWaste(),bS))[1];
     //System.out.println();       
   }
   
   public static int[] wasteChecker(LinkedList<Integer> wasteList,int bSize){
     int[] wasteResult={0,0};
-    float smallWaste=(float)(bSize*0.05);
-    float bigWaste=(float)(bSize*0.95);
+    float smallWaste=(float)(bSize*0.1);
+    float bigWaste=(float)(bSize*0.9);
     for(int i=0;i<wasteList.size();i++){
-      if(wasteList.get(i)<=smallWaste){
+      if((wasteList.get(i)<=smallWaste)&&(wasteList.get(i)>0)){
         wasteResult[0]=wasteResult[0]+1;
       }
       else if(wasteList.get(i)>=bigWaste){
