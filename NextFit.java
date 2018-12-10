@@ -81,6 +81,21 @@ public class NextFit{
       }
     }
   }
-  
+  public void printWaste(){
+    for(int i=0;i<bins.length;i++){
+      if((bins[i][0]!=0)){
+        System.out.print("bin "+i+":");
+      }
+      int wasteSum=0;
+      int sum=0;
+      for(int j=0;(j<bins[0].length) && (bins[i][j]!=0);j++){
+        sum=sum+bins[i][j];        
+      }
+      if(bins[i][0]!=0){
+        wasteSum=binSize-sum;
+        System.out.println(wasteSum+" ");
+      }
+    }    
+  }  
   
 }

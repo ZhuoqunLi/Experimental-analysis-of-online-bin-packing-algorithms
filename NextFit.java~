@@ -16,8 +16,9 @@ public class NextFit{
   }
   
   public void nextFitFunction(LinkedList<Integer> targetList){
+    boolean added;
     for(int i=0;i<targetList.size();i++){//start from the very first element from the linkedlist
-      boolean added=false;
+      added=false;
       for(int j=startBin;(j<bins.length) &&(added==false);j++){
         
         if((sum(bins[j])+targetList.get(i))<=binSize){

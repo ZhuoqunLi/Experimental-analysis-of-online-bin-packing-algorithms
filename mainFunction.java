@@ -186,7 +186,8 @@ public class mainFunction
     long durationTime = System.nanoTime() - beginning;
     //System.out.println((durationTime));
     nFTimes.add((durationTime));
-    if(printResult){nT.printResult();}    
+    if(printResult){nT.printResult();}
+    nT.printWaste();
     System.out.println("-----------------------------");  
     beginning = System.nanoTime();
     FirstFit fT=new FirstFit(list,binSize);
@@ -196,6 +197,7 @@ public class mainFunction
     //System.out.println((durationTime));
     fFTimes.add((durationTime));
     if(printResult){fT.printResult(); }   
+    fT.printWaste();
     System.out.println("-----------------------------");  
     beginning = System.nanoTime();
     BestFit bT=new BestFit(list,binSize);
@@ -205,6 +207,7 @@ public class mainFunction
     //System.out.println((durationTime));
     bFTimes.add((durationTime));
     if(printResult){bT.printResult();}
+    bT.printWaste();
     System.out.println("-----------------------------"); 
     beginning = System.nanoTime();
     Harmonic hA=new Harmonic(list,binSize);
@@ -214,6 +217,7 @@ public class mainFunction
     //System.out.println((durationTime));
     hTimes.add((durationTime));
     if(printResult){hA.printResult();}
+    hA.printWaste();
     System.out.println("-----------------------------");
     beginning = System.nanoTime();
     MTF mA=new MTF(list,binSize);
@@ -223,6 +227,7 @@ public class mainFunction
     //System.out.println((durationTime));
     mtfTimes.add((durationTime));
     if(printResult){mA.printResult();}
+    mA.printWaste();
     System.out.println();
     System.out.println();
         
