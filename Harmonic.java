@@ -31,7 +31,6 @@ public class Harmonic{
               if(bins1[j][z]==0){
                 bins1[j][z]=targetList.get(i);
                 added=true;
-                //System.out.println(bins[j][z]+" "+i+" "+j+" "+targetList.get(i));
               }
             }
           }
@@ -44,7 +43,6 @@ public class Harmonic{
               if(bins2[j][z]==0){
                 bins2[j][z]=targetList.get(i);
                 added=true;
-                //System.out.println(bins[j][z]+" "+i+" "+j+" "+targetList.get(i));
               }
             }
           }
@@ -57,7 +55,6 @@ public class Harmonic{
               if(bins3[j][z]==0){
                 bins3[j][z]=targetList.get(i);
                 added=true;
-                //System.out.println(bins[j][z]+" "+i+" "+j+" "+targetList.get(i));
               }
             }
           }
@@ -70,7 +67,6 @@ public class Harmonic{
               if(bins4[j][z]==0){
                 bins4[j][z]=targetList.get(i);
                 added=true;
-                //System.out.println(bins[j][z]+" "+i+" "+j+" "+targetList.get(i));
               }
             }
           }

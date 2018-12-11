@@ -39,14 +39,11 @@ public class BestFit{
         desIndex=0;
         break;
       }
-      //System.out.println("sum(bins[i]):"+sum(bins[i])+ "    toBeAdded:"+toBeAdded+"      binSize:"+binSize+"   binSize-(sum(bins[i])-toBeAdded:"+(binSize-(sum(bins[i])+toBeAdded))); 
       if(((sum(bins[i])+toBeAdded)<=binSize) && (( binSize-(sum(bins[i])+toBeAdded))<currentPerfectGap)){
         desIndex=i;
         currentPerfectGap=binSize-(sum(bins[i])+toBeAdded);
-        //System.out.println("here");
       }
     } 
-    //System.out.println(desIndex+"  "+toBeAdded);
     return desIndex;
   }
   

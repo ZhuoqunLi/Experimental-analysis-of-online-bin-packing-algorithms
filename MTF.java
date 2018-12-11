@@ -26,12 +26,10 @@ public class MTF{
             if(bins[j][z]==0){
               bins[j][z]=targetList.get(i);
               added=true;
-              //if((bins[j][1]!=0)){
               if((z>0)){
                 shiftArray(bins,j);
               }
             }
-            //System.out.println(Arrays.toString(bins));
           }
         }
       }

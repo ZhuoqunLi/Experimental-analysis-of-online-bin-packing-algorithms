@@ -60,10 +60,8 @@ public class mainFunction
     testTimes=Integer.parseInt(runTimes);
     if(benchMarkOption.equals("a")){
       String inputForSize=JOptionPane.showInputDialog("enter the how bins for optimal solution");
-      //String inputForbinSize=JOptionPane.showInputDialog("enter the size of bins"); 
       try{
         intputSize=Integer.parseInt(inputForSize);
-        //binSize=Integer.parseInt(inputForbinSize);
         binSize=100;
       }
       catch(NumberFormatException e){
@@ -72,11 +70,7 @@ public class mainFunction
       System.out.println("Optimal result:" + intputSize+"  binSize:"+binSize);  
       for(int z=0;z<testTimes;z++){
         list=inputGenerator(list,intputSize,binSize);
-        //System.out.println(list);
         Collections.shuffle(list);
-        //System.out.println(list);
-        Collections.shuffle(list);
-        System.out.println(list);
         normalCases(list,binSize,printAll);
       }
     }
@@ -95,14 +89,11 @@ public class mainFunction
         LinkedList<Integer> simInput = new LinkedList<Integer>();
         String dir = System.getProperty("user.dir");
         File file = new File(dir+"\\box_volumn.txt"); 
-        //System.out.println(dir);
         try(Scanner sc = new Scanner(file)){
           while (sc.hasNextLine()){           
             binTypes.add(Integer.parseInt(sc.nextLine()));
           }
           Collections.sort(binTypes);
-          //System.out.println(binTypes.size()); 
-          //System.out.println(binTypes.toString());
           for(int i=0;i<binTypes.size();i++){
             if(((i>=0)&&(i<13))||((i>=81)&&(i<binTypes.size()))){
               simInput.add(binTypes.get(i));
@@ -123,13 +114,11 @@ public class mainFunction
               simInput.add(binTypes.get(i));
             }
           }
-          //System.out.println(simInput.toString());
           binSize=15000;          
           Random rand = new Random();
           for(int i=0;i<itemsNum;i++){
             list.add(simInput.get(rand.nextInt(simInput.size())));
           }
-          //System.out.println(list.toString());
           normalCases(list,binSize,printAll);
         }
         catch (IOException e) {
@@ -152,23 +141,18 @@ public class mainFunction
         LinkedList<Integer> wordInput = new LinkedList<Integer>();
         String dir = System.getProperty("user.dir");
         File file = new File(dir+"\\words.txt"); 
-        //System.out.println(dir);
         try(Scanner sc = new Scanner(file)){
           while (sc.hasNextLine()){           
             wordsTypes.add(sc.nextLine());
           }
-          //System.out.println(wordsTypes.size()); 
           for(int i=0;i<wordsTypes.size();i++){
             wordInput.add((wordsTypes.get(i)).length());
           }
-          //System.out.println(wordsTypes.toString());
-          //System.out.println(wordInput.toString());
           binSize=100;
           Random rand = new Random();
           for(int i=0;i<itemsNum;i++){
             list.add(wordInput.get(rand.nextInt(wordInput.size())));
           }
-          //System.out.println(list.toString());
           normalCases(list,binSize,printAll);
         }
         catch (IOException e) {
@@ -178,38 +162,31 @@ public class mainFunction
     }
     System.out.println("best fit bins:\n"+bFBinsNum.toString());
     System.out.println("best fit times:\n"+bFTimes.toString());
-    System.out.println("best fit waste:\n"+bFWasteList.toString());
     System.out.println("best fit waste total:\n"+Arrays.toString(bFWasteArray));
     System.out.println("-----------------------------");
     System.out.println("first fit bins:\n"+fFBinsNum.toString());
     System.out.println("first fit times:\n"+fFTimes.toString());
-    System.out.println("first fit waste:\n"+fFWasteList.toString());
     System.out.println("first fit waste total:\n"+Arrays.toString(fFWasteArray));
     System.out.println("-----------------------------");
     System.out.println("next fit bins:\n"+nFBinsNum.toString());
     System.out.println("next fit times:\n"+nFTimes.toString());
-    System.out.println("next fit waste:\n"+nFWasteList.toString());
     System.out.println("next fit waste total:\n"+Arrays.toString(nFWasteArray));
     System.out.println("-----------------------------");
     System.out.println("harmonic fit bins:\n"+hBinsNum.toString());
     System.out.println("harmonic fit times:\n"+hTimes.toString());
-    System.out.println("harmonic fit waste:\n"+hBWasteList.toString());
     System.out.println("harmonic fit waste total:\n"+Arrays.toString(hWasteArray));
     System.out.println("-----------------------------");
     System.out.println("move to front bins:\n"+mtfBinsNum.toString());
     System.out.println("move to front times:\n"+mtfTimes.toString());
-    System.out.println("move to front waste:\n"+mtWasteList.toString());
     System.out.println("move to front waste total:\n"+Arrays.toString(mtWasteArray));
     System.out.println("-----------------------------");
   }
   
   public static void normalCases(LinkedList<Integer> targetList,int bS,boolean printResult){
     LinkedList<Integer> list =targetList;
-    //int inputSize=iS;
     int binSize=bS;          
     DecimalFormat formatForTime = new DecimalFormat("#,###"); 
     
-    //System.out.println("-----------------------------");
     long beginning = System.nanoTime();    
     NextFit nT=new NextFit(list,binSize);
     nFBinsNum.add(nT.getTotalBins());
@@ -217,10 +194,8 @@ public class mainFunction
     nFTimes.add((durationTime));
     if(printResult){nT.printResult();}
     nFWaste=nT.printWaste();
-    nFWasteList.add(nFWaste);
     nFWasteArray[0]=nFWasteArray[0]+(wasteChecker(nT.printWaste(),bS))[0];
     nFWasteArray[1]=nFWasteArray[1]+(wasteChecker(nT.printWaste(),bS))[1];
-    //System.out.println("-----------------------------");  
     beginning = System.nanoTime();
     FirstFit fT=new FirstFit(list,binSize);
     fFBinsNum.add(fT.getTotalBins());
@@ -228,10 +203,8 @@ public class mainFunction
     fFTimes.add((durationTime));
     if(printResult){fT.printResult(); }   
     fFWaste=fT.printWaste();
-    fFWasteList.add(fFWaste);
     fFWasteArray[0]=fFWasteArray[0]+(wasteChecker(fT.printWaste(),bS))[0];
     fFWasteArray[1]=fFWasteArray[1]+(wasteChecker(fT.printWaste(),bS))[1];
-    //System.out.println("-----------------------------");  
     beginning = System.nanoTime();
     BestFit bT=new BestFit(list,binSize);
     bFBinsNum.add(bT.getTotalBins());
@@ -239,10 +212,8 @@ public class mainFunction
     bFTimes.add((durationTime));
     if(printResult){bT.printResult();}
     bFWaste=bT.printWaste();
-    bFWasteList.add(bFWaste);
     bFWasteArray[0]=bFWasteArray[0]+(wasteChecker(bT.printWaste(),bS))[0];
     bFWasteArray[1]=bFWasteArray[1]+(wasteChecker(bT.printWaste(),bS))[1];
-    //System.out.println("-----------------------------"); 
     beginning = System.nanoTime();
     Harmonic hA=new Harmonic(list,binSize);
     hBinsNum.add(hA.getTotalBins());
@@ -250,10 +221,8 @@ public class mainFunction
     hTimes.add((durationTime));
     if(printResult){hA.printResult();}
     hBWaste=hA.printWaste();
-    hBWasteList.add(hBWaste);
     hWasteArray[0]=hWasteArray[0]+(wasteChecker(hA.printWaste(),bS))[0];
     hWasteArray[1]=hWasteArray[1]+(wasteChecker(hA.printWaste(),bS))[1];
-    //System.out.println("-----------------------------");
     beginning = System.nanoTime();
     MTF mA=new MTF(list,binSize);
     mtfBinsNum.add(mA.getTotalBins());
@@ -261,10 +230,8 @@ public class mainFunction
     mtfTimes.add((durationTime));
     if(printResult){mA.printResult();}
     mtWaste=mA.printWaste();
-    mtWasteList.add(mtWaste);
     mtWasteArray[0]=mtWasteArray[0]+(wasteChecker(mA.printWaste(),bS))[0];
-    mtWasteArray[1]=mtWasteArray[1]+(wasteChecker(mA.printWaste(),bS))[1];
-    //System.out.println();       
+    mtWasteArray[1]=mtWasteArray[1]+(wasteChecker(mA.printWaste(),bS))[1];     
   }
   
   public static int[] wasteChecker(LinkedList<Integer> wasteList,int bSize){
@@ -278,8 +245,7 @@ public class mainFunction
       else if(wasteList.get(i)>=bigWaste){
         wasteResult[1]=wasteResult[1]+1;
       }
-    }
-    
+    }   
     return wasteResult;
   }
   
@@ -291,9 +257,7 @@ public class mainFunction
     
     for(int i=0;i<(intputSize);i++){
       int n = rand.nextInt(binSize) + 1;
-      //int n = rand.nextInt(5) + 1;
       int remaindSize=binSize-n;
-      //System.out.println(n+" "+i+" "+remaindSize);
       tempList.add(n);
       while(remaindSize>0){
         if(remaindSize<=1){
@@ -302,11 +266,9 @@ public class mainFunction
         }
         else{
           n=rand.nextInt(remaindSize) + 1;
-          //n=rand.nextInt(5) + 1;
           remaindSize=remaindSize-n;
           tempList.add(n);
         }
-        //System.out.println(n+" "+i+" "+remaindSize);
       }
     }    
     return tempList;

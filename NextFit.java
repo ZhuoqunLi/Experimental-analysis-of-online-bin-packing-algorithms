@@ -26,13 +26,11 @@ public class NextFit{
             if(bins[j][z]==0){
               bins[j][z]=targetList.get(i);
               added=true;
-              //System.out.println(bins[j][z]+" "+i+" "+j+" "+targetList.get(i));
             }
           }
         }
         startBin=j;
       }
-     //System.out.println("------"); 
     }
   }
   
